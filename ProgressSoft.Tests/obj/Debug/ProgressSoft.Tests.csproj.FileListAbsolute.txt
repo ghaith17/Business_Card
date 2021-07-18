@@ -1,0 +1,2 @@
+C:\Users\GHAITH\source\repos\ProgressSoft.Tests\obj\Debug\ProgressSoft.Tests.csprojAssemblyReference.cache
+C:\Users\GHAITH\source\repos\ProgressSoft.Tests\obj\Debug\ProgressSoft.Tests.csproj.CoreCompileInputs.cache

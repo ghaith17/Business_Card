@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "csv";
+}
+
+<h2>csv</h2>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button2 {
+            background-color: #008CBA;
+        }
+        /* Blue */
+        .button3 {
+            background-color: #f44336;
+        }
+        /* Red */
+        .button4 {
+            background-color: #e7e7e7;
+            color: black;
+        }
+        /* Gray */
+        .button5 {
+            background-color: #555555;
+        }
+        /* Black */
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("csv", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <center style="margin-top:100px;">
+            <input type="file" id="fileToUpload" name="csvFile"  accept=".csv" class="button button5" />
+            <span class="field-validation-error" id="spanfile"></span>
+            <input type="submit" id="btnSubmit" value="Upload" class="button" style="margin-top:200px;" />
+        </center>
+    }
+    <script type="text/jscript">
+        //get file size
+        function GetFileSize(fileid) {
+            try {
+                var fileSize = 0;
+                //for IE
+                if ($.browser.msie) {
+                    //before making an object of ActiveXObject,
+                    //please make sure ActiveX is enabled in your IE browser
+                    var objFSO = new ActiveXObject("Scripting.FileSystemObject"); var filePath = $("#" + fileid)[0].value;
+                    var objFile = objFSO.getFile(filePath);
+                    var fileSize = objFile.size; //size in kb
+                    fileSize = fileSize / 1048576; //size in mb
+                }
+                //for FF, Safari, Opeara and Others
+                else {
+                    fileSize = $("#" + fileid)[0].files[0].size //size in kb
+                    fileSize = fileSize / 1048576; //size in mb
+                }
+                return fileSize;
+            }
+            catch (e) {
+                alert("Error is :" + e);
+            }
+        }
+
+        //get file path from client system
+        function getNameFromPath(strFilepath) {
+            var objRE = new RegExp(/([^\/\\]+)$/);
+            var strName = objRE.exec(strFilepath);
+
+            if (strName == null) {
+                return null;
+            }
+            else {
+                return strName[0];
+            }
+        }
+
+        $("#btnSubmit").live("click", function () {
+            if ($('#fileToUpload').val() == "") {
+                $("#spanfile").html("Please upload file");
+                return false;
+            }
+            else {
+                return checkfile();
+            }
+        });
+
+        function checkfile() {
+            var file = getNameFromPath($("#fileToUpload").val());
+            if (file != null) {
+                var extension = file.substr((file.lastIndexOf('.') + 1));
+                // alert(extension);
+                switch (extension) {
+                    case 'xml':
+                    //case 'png':
+                    //case 'gif':
+                    //case 'pdf':
+                        flag = true;
+                        break;
+                    default:
+                        flag = false;
+                }
+            }
+            if (flag == false) {
+                $("#spanfile").text("You can upload only .xml extension file");
+                return false;
+            }
+            else {
+                var size = GetFileSize('fileToUpload');
+                if (size > 3) {
+                    $("#spanfile").text("You can upload file up to 3 MB");
+                    return false;
+                }
+                else {
+                    $("#spanfile").text("");
+                }
+            }
+        }
+
+        $(function () {
+            $("#fileToUpload").change(function () {
+                checkfile();
+            });
+        });
+    </script>
+    @*@if (Model.Count() > 0)
+        {
+            <hr />
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                </tr>
+                @foreach (CustomerModel customer in Model)
+                {
+                    <tr>
+                        <td>@customer.CustomerId</td>
+                        <td>@customer.Name</td>
+                        <td>@customer.Country</td>
+                    </tr>
+                }
+            </table>
+        }*@
+</body>
+</html>
+

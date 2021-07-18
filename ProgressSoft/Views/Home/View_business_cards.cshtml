@@ -1,0 +1,84 @@
+﻿@model IList<ProgressSoft.Models.BusinessCard>
+@{
+    ViewBag.Title = "View_business_cards";
+}
+
+<h2>View_business_cards</h2>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#checkAll").click(function () {
+                $(".checkBox").prop('checked',
+                    $(this).prop('checked'));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container py-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5>businessCards List</h5>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("View_business_cards", "Home", FormMethod.Post))
+                {
+                    <button type="submit" value="Delete" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i> Delete</button>
+                    <br /><br />
+                    <table id="DataTable" style="width:100%;" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="checkAll" /></th>
+                                @*<th>ID</th>*@
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>DOB</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Photo</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var businessCard in Model)
+                            {
+                                <tr>
+                                    <td><input type="checkbox" name="ID" id="" value="@businessCard.CustomerId" class="checkBox" /></td>
+                                    @*<td>@businessCard.CustomerId</td>*@
+                                    <td>@businessCard.Name</td>
+                                    <td>@businessCard.Gender</td>
+                                    <td>@businessCard.DOB.ToShortDateString()</td>
+                                    <td>@businessCard.Email</td>
+                                    <td>@businessCard.Phone</td>
+                                    <td> <img src="~/Images/@businessCard.Photo.ToString()" class="img-thumbnail" width="100" height="100"  alt="..."></td>
+                                    <td>@businessCard.Address</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "QR";
+}
+
+<h2>QR</h2>
+<style>
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .button2 {
+        background-color: #008CBA;
+    }
+    /* Blue */
+    .button3 {
+        background-color: #f44336;
+    }
+    /* Red */
+    .button4 {
+        background-color: #e7e7e7;
+        color: black;
+    }
+    /* Gray */
+    .button5 {
+        background-color: #555555;
+    }
+    /* Black */
+</style>
+</head>
+<body>
+    @using (Html.BeginForm("QR", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <center style="margin-top:100px;">
+            <input type="file" id="fileToUpload" name="QRFile" accept=".png,.jpg,.jpeg,.gif,.tif" class="button button5" />
+            <span class="field-validation-error" id="spanfile"></span>
+            <input type="submit" id="btnSubmit" value="Upload" class="button" style="margin-top:200px;" />
+        </center>
+    }
+   
+</body>
+</html>
+
+

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Progressoft</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+<style>
+    .dropbtn {
+        background-color: cornflowerblue;
+        color: black;
+        padding: 16px;
+        font-size: 16px;
+        font-style:italic;
+        text-decoration:solid;
+        border: groove;
+       
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: dimgrey;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: white;
+    }
+</style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="nav nav-tabs">
+                    <li class="dropdown">
+                        <button class="dropbtn" onclick="location.href='@Url.Action("New_business_cards", "Home")';return false;">Dashboard</button>
+                       
+                    </li>
+                    &nbsp; &nbsp;
+                    <li class="dropdown">
+                        <button class="dropbtn">Export</button>
+                        <div class="dropdown-content">
+                            <a href="@Url.Action("ExportCSV", "Home")">Export To CSV</a>
+                            <a href="@Url.Action("ExportXML", "Home")">Export To XML</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+     
+    
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

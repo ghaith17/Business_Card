@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ArrayOfBusinessCard xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BusinessCard>
+    <CustomerId>11</CustomerId>
+    <Name>ghaith</Name>
+    <Gender>male</Gender>
+    <DOB>2021-07-14T00:00:00</DOB>
+    <Email>ghaitheldalahmeh@gmail.com</Email>
+    <Phone>0778497757</Phone>
+    <Photo>excel.png</Photo>
+    <Address>irbid</Address>
+  </BusinessCard>
+  <BusinessCard>
+    <CustomerId>12</CustomerId>
+    <Name>ali</Name>
+    <Gender>male</Gender>
+    <DOB>2021-07-14T00:00:00</DOB>
+    <Email>Ali@gmail.com</Email>
+    <Phone>0778497757</Phone>
+    <Photo>xml.png</Photo>
+    <Address>Amman</Address>
+  </BusinessCard>
+</ArrayOfBusinessCard>System.Collections.Generic.List`1[ProgressSoft.Models.BusinessCard]
